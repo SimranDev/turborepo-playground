@@ -1,0 +1,23 @@
+@font-face {
+  font-family: BeausiteClassicRegular;
+  src: url("./fonts/BeausiteClassicWeb-Regular.woff2");
+  format: ("woff2");
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: BeausiteClassicRegular;
+}
+
+#__next {
+  height: inherit;
+}
