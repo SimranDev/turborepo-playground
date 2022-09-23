@@ -1,20 +1,30 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useLayoutEffect, useState } from "react";
+import { useState } from "react";
 import { theme } from "themer";
 import { ThemeProvider } from "@mui/material";
+import { useRouter } from "next/router";
+import Layout from "../components/layout/index ";
+import useIsomorphicLayoutEffect from "../hooks/useIsomorphicLayoutEffect";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { asPath } = useRouter();
   const [subDomain, setSubDomain] = useState("");
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const _subDomain = window.location.hostname.split(".")[0];
     setSubDomain(_subDomain);
   }, []);
 
   return (
     <ThemeProvider theme={theme(subDomain)}>
-      <Component {...pageProps} />
+      {asPath === "/application" ? (
+        <Component {...pageProps} />
+      ) : (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
     </ThemeProvider>
   );
 }
